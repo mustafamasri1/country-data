@@ -10,6 +10,7 @@ class SelectionDialog extends StatefulWidget {
   final bool? showCountryOnly;
   final InputDecoration searchDecoration;
   final TextStyle? searchStyle;
+  final bool? isFocused;
   final TextStyle? textStyle;
   final TextStyle headerTextStyle;
   final BoxDecoration? boxDecoration;
@@ -50,6 +51,7 @@ class SelectionDialog extends StatefulWidget {
     required this.headerTextStyle,
     InputDecoration searchDecoration = const InputDecoration(),
     this.searchStyle,
+    this.isFocused,
     this.textStyle,
     required this.topBarPadding,
     this.headerText,
@@ -132,6 +134,7 @@ class _SelectionDialogState extends State<SelectionDialog> {
                 Padding(
                   padding: widget.searchPadding,
                   child: TextField(
+                    autofocus: widget.isFocused ?? false,
                     style: widget.searchStyle,
                     decoration: widget.searchDecoration,
                     onChanged: _filterElements,
