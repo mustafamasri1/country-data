@@ -1,3 +1,7 @@
+## 3.4.0 - August 19 2025
+- Fix China translation
+- Adding flag autofocus
+
 ## 3.3.1 - August 19 2025
 - Fix French translation accent display issue
 - Correct French country name translations (Biélorussie, Koweït, Grenade, etc.)
