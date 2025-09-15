@@ -1,4 +1,4 @@
-library country_code_picker;
+library country_data;
 
 export 'src/country_code.dart';
 export 'src/country_codes.dart';
