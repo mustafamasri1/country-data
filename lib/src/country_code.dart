@@ -10,28 +10,19 @@ mixin ToAlias {}
 /// Country element. This is the element that contains all the information
 class CountryCode {
   /// the name of the country
-  String? name;
-
-  /// the flag of the country
-  final String? flagUri;
+  String name;
 
   /// the country code (IT,AF..)
-  final String? code;
+  final String code;
 
   /// the dial code (+39,+93..)
-  final String? dialCode;
+  final String dialCode;
 
   CountryCode({
-    this.name,
-    this.flagUri,
-    this.code,
-    this.dialCode,
+    required this.name,
+    required this.code,
+    required this.dialCode,
   });
-
-  @Deprecated('Use `fromCountryCode` instead.')
-  factory CountryCode.fromCode(String isoCode) {
-    return CountryCode.fromCountryCode(isoCode);
-  }
 
   factory CountryCode.fromCountryCode(String countryCode) {
     final Map<String, String>? jsonCode = codes.firstWhereOrNull(
@@ -71,28 +62,27 @@ class CountryCode {
 
   CountryCode localize(BuildContext context) {
     final nam = CountryLocalizations.of(context)?.translate(code) ?? name;
-    return this..name = nam ?? name;
+    return this..name = nam;
   }
 
   factory CountryCode.fromJson(Map<String, dynamic> json) {
     return CountryCode(
-      name: json['name'],
-      code: json['code'],
-      dialCode: json['dial_code'],
-      flagUri: 'flags/${json['code'].toLowerCase()}.png',
+      name: json['name'] as String,
+      code: json['code'] as String,
+      dialCode: json['dial_code'] as String,
     );
   }
 
   @override
-  String toString() => "$dialCode";
+  String toString() => dialCode;
 
   String toLongString() => "$dialCode ${toCountryStringOnly()}";
 
   String toCountryStringOnly() {
-    return '$_cleanName';
+    return _cleanName;
   }
 
-  String? get _cleanName {
-    return name?.replaceAll(RegExp(r'[[\]]'), '').split(',').first;
+  String get _cleanName {
+    return name.replaceAll(RegExp(r'[[\]]'), '').split(',').first;
   }
 }
